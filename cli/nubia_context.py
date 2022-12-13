@@ -11,15 +11,15 @@ class NubiaNgxStatsContext(context.Context):
     def on_connected(self, *args, **kwargs):
         pass
 
-    async def on_cli(self, cmd, args):
+    def on_cli(self, cmd, args):
         # dispatch the on connected message
         self.verbose = args.verbose
-        await self.registry.dispatch_message(eventbus.Message.CONNECTED)
+        self.registry.dispatch_message(eventbus.Message.CONNECTED)
 
-    async def on_interactive(self, args):
+    def on_interactive(self, args):
         self.verbose = args.verbose
-        ret = await self._registry.find_command("connect").run_cli(args)
+        ret = self._registry.find_command("connect").run_cli(args)
         if ret:
             raise exceptions.CommandError("Failed starting interactive mode")
         # dispatch the on connected message
-        await self.registry.dispatch_message(eventbus.Message.CONNECTED)
+        self.registry.dispatch_message(eventbus.Message.CONNECTED)
