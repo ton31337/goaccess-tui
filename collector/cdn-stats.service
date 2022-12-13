@@ -1,0 +1,7 @@
+[Unit]
+Description=Run CDN stats collector every 10 minutes
+
+[Service]
+Type=oneshot
+Environment=HOME=/root
+ExecStart=/root/tests/ngx_stats/collector/collector.py
