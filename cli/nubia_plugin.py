@@ -2,14 +2,14 @@
 
 import argparse
 
-from nubia_context import NubiaNgxStatsContext
-from nubia_statusbar import NubiaNgxStatsStatusBar
+from nubia_context import NubiaGoAccessContext
+from nubia_statusbar import NubiaGoAccessStatusBar
 
 from nubia import CompletionDataSource, PluginInterface
 from nubia.internal.blackcmd import CommandBlacklist
 
 
-class NubiaNgxStatsPlugin(PluginInterface):
+class NubiaGoAccessPlugin(PluginInterface):
     """
     The PluginInterface class is a way to customize nubia for every customer
     use case. It allowes custom argument validation, control over command
@@ -22,7 +22,7 @@ class NubiaNgxStatsPlugin(PluginInterface):
         The plugin can return a custom context but it has to inherit from the
         correct parent class.
         """
-        return NubiaNgxStatsContext()
+        return NubiaGoAccessContext()
 
     def validate_args(self, args):
         """
@@ -81,7 +81,7 @@ class NubiaNgxStatsPlugin(PluginInterface):
         This returns the StatusBar object that handles the bottom status bar
         and the right-side per-line status
         """
-        return NubiaNgxStatsStatusBar(context)
+        return NubiaGoAccessStatusBar(context)
 
     def getBlacklistPlugin(self):
         blacklister = CommandBlacklist()

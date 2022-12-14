@@ -5,7 +5,7 @@ from pygments.token import Token
 from nubia import context, statusbar
 
 
-class NubiaNgxStatsStatusBar(statusbar.StatusBar):
+class NubiaGoAccessStatusBar(statusbar.StatusBar):
     def __init__(self, context):
         self._last_status = None
 
@@ -24,7 +24,7 @@ class NubiaNgxStatsStatusBar(statusbar.StatusBar):
         else:
             is_verbose = (Token.Info, "OFF")
         return [
-            (Token.Toolbar, "CDN statistics"),
+            (Token.Toolbar, "GoAccess statistics"),
             spacer,
             (Token.Toolbar, "Verbose "),
             spacer,

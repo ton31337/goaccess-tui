@@ -8,7 +8,7 @@ import subprocess
 import json
 
 log_file = "/var/log/nginx/stats/access.log"
-db_file = "/tmp/ngx-stats.db"
+db_file = "/tmp/goaccess.db"
 log_format = '%h - %v %^ [%d:%t %^] %^ "%r" %s %b "%R" "%u"'
 date_format = "%d/%b/%Y"
 time_format = "%T"

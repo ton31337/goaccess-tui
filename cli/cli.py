@@ -2,15 +2,15 @@
 
 import sys
 
-from nubia_plugin import NubiaNgxStatsPlugin
+from nubia_plugin import NubiaGoAccessPlugin
 
 import commands
 from nubia import Nubia, Options
 
 if __name__ == "__main__":
-    plugin = NubiaNgxStatsPlugin()
+    plugin = NubiaGoAccessPlugin()
     shell = Nubia(
-        name="ngx-stats",
+        name="goaccess",
         command_pkgs=commands,
         plugin=plugin,
         options=Options(

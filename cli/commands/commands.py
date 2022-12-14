@@ -11,7 +11,7 @@ class ShowCommand:
     "This is a super `show` command"
 
     def __init__(self) -> None:
-        self.file = "/tmp/ngx-stats.db"
+        self.file = "/tmp/goaccess.db"
         self.conn = sqlite3.connect(self.file)
 
     @command("filter-by-visitor")

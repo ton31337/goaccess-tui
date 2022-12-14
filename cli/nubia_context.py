@@ -3,7 +3,7 @@
 from nubia import context, eventbus, exceptions
 
 
-class NubiaNgxStatsContext(context.Context):
+class NubiaGoAccessContext(context.Context):
     def __init__(self):
         self.verbose = False
         super().__init__()
