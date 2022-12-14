@@ -28,6 +28,8 @@ class ShowCommand:
             query = "SELECT timestamp, vhost, SUM(visitors) as visitors FROM stats WHERE vhost = '{}' ORDER BY timestamp DESC".format(
                 vhost
             )
+
+        pd.set_option('display.min_rows', 50)
         df = pd.read_sql_query(
             query,
             self.conn,
@@ -51,6 +53,8 @@ class ShowCommand:
             query = "SELECT timestamp, vhost, SUM(visitors) as visitors FROM stats GROUP BY vhost ORDER BY visitors DESC LIMIT {}".format(
                 topn
             )
+
+        pd.set_option('display.min_rows', 50)
         df = pd.read_sql_query(
             query,
             self.conn,
