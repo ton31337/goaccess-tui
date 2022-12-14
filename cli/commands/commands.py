@@ -21,11 +21,11 @@ class ShowCommand:
         """
         Get stats for a specified virtual host
         """
-        query = "SELECT timestamp, vhost, visitors FROM stats WHERE vhost = '{}' ORDER BY timestamp DESC LIMIT 10".format(
+        query = "SELECT timestamp, vhost, visitors FROM stats WHERE vhost = '{}' ORDER BY timestamp DESC".format(
             vhost
         )
         if overall:
-            query = "SELECT timestamp, vhost, SUM(visitors) as visitors FROM stats WHERE vhost = '{}' ORDER BY timestamp DESC LIMIT 10".format(
+            query = "SELECT timestamp, vhost, SUM(visitors) as visitors FROM stats WHERE vhost = '{}' ORDER BY timestamp DESC".format(
                 vhost
             )
         df = pd.read_sql_query(
