@@ -18,8 +18,8 @@ conn.execute(
     """
     CREATE TABLE IF NOT EXISTS stats
         (timestamp INT NOT NULL,
-        vhost      TEXT    NOT NULL,
-        visitors   INT     NOT NULL);
+        vhost      TEXT NOT NULL,
+        visitors   INT NOT NULL);
     """
 )
 
@@ -49,6 +49,9 @@ try:
             time.time(), vhost["data"], vhost["visitors"]["count"]
         )
         conn.cursor().execute(sqlite_data)
+    # Delete old records, 10 days retention.
+    conn.cursor().execute("DELETE FROM stats WHERE STRFTIME('%s') - timestamp > 864000")
+
     conn.commit()
     conn.close()
 
