@@ -58,6 +58,7 @@ class NubiaGoAccessPlugin(PluginInterface):
             "--stderr",
             "-s",
             action="store_true",
+            default="True",
             help="By default the logging output goes to a "
             "temporary file. This disables this feature "
             "by sending the logging output to stderr",
