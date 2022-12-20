@@ -59,3 +59,4 @@ try:
         f.truncate()
 except IOError:
     print("Failed parsing {}".format(log_file))
+    conn.close()
