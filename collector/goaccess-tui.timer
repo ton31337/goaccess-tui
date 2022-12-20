@@ -1,5 +1,5 @@
 [Unit]
-Description=Run CDN stats collector every 10 minutes
+Description=Run collector every 10 minutes
 
 [Timer]
 OnUnitActiveSec=10min

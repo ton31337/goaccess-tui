@@ -1,0 +1,7 @@
+[Unit]
+Description=Run collector every 10 minutes
+
+[Service]
+Type=oneshot
+Environment=HOME=/usr/local/goaccess-tui
+ExecStart=/usr/local/goaccess-tui/collector/collector.py

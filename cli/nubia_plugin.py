@@ -40,7 +40,7 @@ class NubiaGoAccessPlugin(PluginInterface):
         build your list of arguments that you want for your shell.
         """
         opts_parser = argparse.ArgumentParser(
-            description="Nginx stats",
+            description="GoAccess TUI",
             formatter_class=argparse.ArgumentDefaultsHelpFormatter,
             add_help=add_help,
         )
