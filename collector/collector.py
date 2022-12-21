@@ -37,10 +37,12 @@ try:
             time_format,
             "-o",
             "json",
+            "--no-query-string",
         ],
         check=True,
         stdout=subprocess.PIPE,
-    ).stdout
+    ).stdout.decode('ascii', 'ignore')
+
     data_dict = json.loads(log_data)
     for vhost in data_dict["vhosts"]["data"]:
         sqlite_data = 'INSERT INTO stats (timestamp, vhost, visitors) VALUES ({}, "{}", {})'.format(
@@ -55,6 +57,6 @@ try:
 
     with open(log_file, "r+") as f:
         f.truncate()
-except IOError:
+except:
     print("Failed parsing {}".format(log_file))
     conn.close()
