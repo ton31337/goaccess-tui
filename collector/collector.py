@@ -8,20 +8,18 @@ import subprocess
 import json
 
 log_file = "/var/log/nginx/stats/access.log"
+sql_file = "sql/stats.sql"
 db_file = "/tmp/goaccess.db"
 log_format = '%h - %v %^ [%d:%t %^] %^ "%r" %s %b "%R" "%u"'
 date_format = "%d/%b/%Y"
 time_format = "%T"
 
 conn = sqlite3.connect(db_file)
-conn.execute(
-    """
-    CREATE TABLE IF NOT EXISTS stats
-        (timestamp INT NOT NULL,
-        vhost      TEXT NOT NULL,
-        visitors   INT NOT NULL);
-    """
-)
+cursor = conn.cursor()
+
+with open(sql_file, 'r') as file:
+    sql_script = file.read()
+    cursor.executescript(sql_script)
 
 try:
     log_data = subprocess.run(
@@ -48,9 +46,9 @@ try:
         sqlite_data = 'INSERT INTO stats (timestamp, vhost, visitors) VALUES ({}, "{}", {})'.format(
             time.time(), vhost["data"], vhost["visitors"]["count"]
         )
-        conn.cursor().execute(sqlite_data)
+        cursor.execute(sqlite_data)
     # Delete old records, 10 days retention.
-    conn.cursor().execute("DELETE FROM stats WHERE STRFTIME('%s') - timestamp > 864000")
+    cursor.execute("DELETE FROM stats WHERE STRFTIME('%s') - timestamp > 864000")
 
     conn.commit()
     conn.close()
